@@ -2,7 +2,8 @@ package com.educandoweb.course.entities;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,6 +17,9 @@ public class User  {
     private String email;
     private String phone;
     private String password;
+
+    @OneToMany(mappedBy = "client")
+    private final List<Order> orders = new ArrayList<>();
 
     public User(){}
 
@@ -79,4 +83,9 @@ public class User  {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
 }
